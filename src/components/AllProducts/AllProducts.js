@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import ShowAllProducts from '../ShowAllProducts/ShowAllProducts';
 import '../AllProducts/AllProducts.css'
+import Pagination from '../Pagination/Pagination';
 
 const AllProducts = () => {
     const [allproducts, setAllproducts] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const[postsPerPage, setPostsPerPage] = useState(6)
     useEffect(() => {
         fetch('https://dummyjson.com/products')
         .then(res => res.json())
         .then(data => setAllproducts(data.products))
         console.log(allproducts.brand)
     }, [])
+
+    const lastPostIndex = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+    const currentPosts = allproducts.slice(firstPostIndex, lastPostIndex)
     return (
         <div>
             <div >
@@ -24,13 +31,19 @@ const AllProducts = () => {
             </div>
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center mt-14 lg:gap-8 lg:mx-20'>
                 {
-                    allproducts?.map(allproduct => <ShowAllProducts
+                    currentPosts?.map(allproduct => <ShowAllProducts
                     
                     key={allproduct.id}
                     allproduct={allproduct}
                     
                     ></ShowAllProducts>)
+                    
                 }
+                 <Pagination totalPosts = {allproducts.length}
+                  postsPerPage ={postsPerPage}
+                  setCurrentPage = {setCurrentPage}
+                  currentPage = {currentPage}
+                  />
             </div>
         </div>
     );
