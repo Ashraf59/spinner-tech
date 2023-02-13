@@ -25,6 +25,10 @@
     font-weight: bold;
 }
 
+div span .ri-shopping-cart-2-line{
+    color: #FA2C6A;
+    font-size: 25px;
+}
 @keyframes blink{
     0%{
         background-position: -500%;

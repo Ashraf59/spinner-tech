@@ -28,17 +28,19 @@ return (
 <img className='w-20 h-20' src={logo} alt='logo'/>
 <p className='blind-text'>Shope is Open Now</p>
 </div>
+
 <div className="navbar-center hidden lg:flex">
 <ul className="menu menu-horizontal px-1">
 {menuItems}
+
 </ul>
+
+</div>
+<div className='ml-60'>
+  <span><i className="ri-shopping-cart-2-line"></i></span>
 </div>
 
-{/* <div className="navbar-end">
 
-
-
-</div> */}
 </div>
     </div>
 );
